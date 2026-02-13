@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Imágenes SVG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .test-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .test-item {
+            background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .test-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .test-item p {
+            color: white;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        h1 {
+            color: #1A1A2E;
+        }
+
+        .status {
+            padding: 10px;
+            background: #4ECDC4;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧪 Prueba de Carga de Imágenes SVG</h1>
+    <div class="status">
+        <strong>Ruta base:</strong> images/ellos/<br>
+        <strong>Extensión:</strong> .svg<br>
+        <strong>Fondo:</strong> Oscuro (para SVG transparentes)
+    </div>
+
+    <div class="test-container">
+        <div class="test-item">
+            <img src="images/ellos/ellos-1.svg" alt="Ellos 1" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-1.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-2.svg" alt="Ellos 2" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-2.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-3.svg" alt="Ellos 3" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-3.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-4.svg" alt="Ellos 4" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-4.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-5.svg" alt="Ellos 5" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-5.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-6.svg" alt="Ellos 6" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-6.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-7.svg" alt="Ellos 7" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-7.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-8.svg" alt="Ellos 8" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-8.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-9.svg" alt="Ellos 9" onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-9.svg</p>
+        </div>
+        <div class="test-item">
+            <img src="images/ellos/ellos-10.svg" alt="Ellos 10"
+                onerror="this.parentElement.style.border='3px solid red'">
+            <p>ellos-10.svg</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: #FFD93D; border-radius: 8px;">
+        <h3>📋 Instrucciones:</h3>
+        <ol>
+            <li>Si ves las imágenes con fondo oscuro = ✅ Todo funciona</li>
+            <li>Si ves bordes rojos = ❌ La imagen no se cargó (verifica la ruta)</li>
+            <li>Abre la consola (F12) para ver errores específicos</li>
+        </ol>
+    </div>
+
+    <script>
+        // Verificar si las imágenes se cargan
+        window.addEventListener('load', function () {
+            const images = document.querySelectorAll('img');
+            let loaded = 0;
+            let failed = 0;
+
+            images.forEach(img => {
+                if (img.complete && img.naturalHeight !== 0) {
+                    loaded++;
+                } else {
+                    failed++;
+                }
+            });
+
+            console.log(`✅ Imágenes cargadas: ${loaded}`);
+            console.log(`❌ Imágenes fallidas: ${failed}`);
+        });
+    </script>
+</body>
+
+</html>
