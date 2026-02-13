@@ -1,0 +1,14 @@
+{
+  "name": "juguetes-de-papel",
+  "version": "1.0.0",
+  "description": "Colección de Juguetes de Papel 3D",
+  "scripts": {
+    "start": "serve . -p $PORT"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
