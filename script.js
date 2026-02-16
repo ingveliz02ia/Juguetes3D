@@ -335,7 +335,7 @@ let __fb_hotmart_lock = false;
 function trackFb(eventName, params = {}) {
   try {
     if (window.fbq) window.fbq('track', eventName, params);
-  } catch (e) {}
+  } catch (e) { }
 }
 
 document.addEventListener('click', (e) => {
@@ -344,18 +344,24 @@ document.addEventListener('click', (e) => {
 
   const url = a.getAttribute('href') || '';
 
-  // Detecta Hotmart (incluye pay.hotmart.com)
-  if (!/hotmart\.com|pay\.hotmart\.com/i.test(url)) return;
+  const isHotmart = /hotmart\.com|pay\.hotmart\.com/i.test(url);
+  const isWhatsApp = /wa\.me|whatsapp\.com/i.test(url);
+
+  if (!isHotmart && !isWhatsApp) return;
 
   // anti doble click
   if (__fb_hotmart_lock) return;
   __fb_hotmart_lock = true;
   setTimeout(() => { __fb_hotmart_lock = false; }, 1200);
 
-  trackFb('InitiateCheckout', {
-    content_name: document.title || 'Producto',
-    currency: 'PEN'
-  });
+  if (isHotmart) {
+    trackFb('InitiateCheckout', {
+      content_name: document.title || 'Producto',
+      currency: 'PEN'
+    });
+  } else if (isWhatsApp) {
+    trackFb('Contact');
+  }
 });
 
 window.addEventListener('resize', createMobileMenu);
