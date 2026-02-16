@@ -366,6 +366,34 @@ function createMobileMenu() {
     }
 }
 
+/* =========================
+   FACEBOOK PIXEL - TRACK CLICK BUY
+========================= */
+
+function trackFb(eventName, params = {}) {
+  try {
+    if (window.fbq) {
+      window.fbq("track", eventName, params);
+    }
+  } catch(e){}
+}
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("a[href]");
+  if (!btn) return;
+
+  const url = btn.getAttribute("href") || "";
+
+  // 🔥 Detecta links de Hotmart
+  if (url.includes("hotmart")) {
+    trackFb("InitiateCheckout", {
+      content_name: document.title,
+      currency: "PEN"
+    });
+  }
+});
+
+
 window.addEventListener('resize', createMobileMenu);
 createMobileMenu();
 
